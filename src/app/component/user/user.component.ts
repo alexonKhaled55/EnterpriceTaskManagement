@@ -1,21 +1,23 @@
-import { Component, Input, output, Output } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
+import { User } from './user.model';
+import { CardComponent } from "../shared/card/card.component";
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
-  @Input({ required: true }) id!: string;
-  newUser = output<string>();
+  @Input({ required: true }) user!: User;
+  select = output<string>();
+  @Input({required:true}) selected!:boolean;
+
   onSelectUser() {
-    this.newUser.emit(this.id);
+    this.select.emit(this.user.id);
   }
   get imagePath() {
-    return 'assets/users/' + this.avatar;
+    return 'assets/users/' + this.user.avatar;
   }
 }
 
