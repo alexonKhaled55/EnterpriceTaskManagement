@@ -3,11 +3,12 @@
 <main>
   <ul id="users">
     <!-- what is the track user.id is do used for compares the current displayed list withthe current changed one instead of rendering the list it comparing and just manipulating the chaned one    -->
+    
     @for (user of users;track user.id){
     <li>
+      <!-- <p>{{user.name}}</p> -->
       <app-user
         [selected]="user.id == selectedUserId"
-        [class.active]="selectedUserId === 'u1'"
         (select)="onSelectUser($event)"
         [user]="user"
       ></app-user>
@@ -17,6 +18,6 @@
   @if(SelectedUser){
   <app-tasks [userId]="SelectedUser.id" [name]="SelectedUser.name" />
   }@else {
-  <p id="fallback">Select User To See His tasks</p>
+  <p>Select User To See His tasks</p>
   }
 </main>
